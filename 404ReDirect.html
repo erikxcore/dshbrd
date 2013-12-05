@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+<style type="text/css">
+/* ----------------------------
+simple reset
+---------------------------- */
+
+html, body, ul, ol, li, form, fieldset, legend
+{
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
+
+fieldset,img { border: 0; }
+
+legend { color: #000; }
+
+li { list-style: none; }
+
+sup { vertical-align: text-top; }
+
+sub { vertical-align: text-bottom; }
+
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption, th, td
+{
+	text-align: left;
+	vertical-align: top;
+	font-weight: normal;
+}
+
+input, textarea, select
+{
+	font-size: 110%;
+	line-height: 1.1;
+}
+
+abbr, acronym
+{
+	border-bottom: .1em dotted;
+	cursor: help;
+}
+
+html,body{
+background: rgb(238,238,238); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(238,238,238,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(238,238,238,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+
+font-family:Helvetica, Arial, sans-serif;
+}
+
+#container{
+width:600px;
+margin:50px auto 0px auto;
+padding:10px;
+background-color:white;='#b1d8f5',GradientType=0 ); /* IE6-9 */
+
+-webkit-border-radius: 10px;
+border-radius: 10px;
+-webkit-box-shadow:  0px 0px 5px 5px rgba(255, 255, 255, 0.4);
+box-shadow:  0px 0px 5px 5px rgba(255, 255, 255, 0.4);
+}
+h1{
+color:rgb(45, 109, 45);
+}
+#http,#https{
+display:none;
+}
+
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+window.onload = function(){
+    if (window.location.protocol == "http:") {
+	document.getElementById("http").style.display = 'block'; 
+        restOfUrl = window.location.href.substr(5);
+	setTimeout('window.location = "https:" + restOfUrl', 5000)
+    }else{
+	document.getElementById("https").style.display = 'none'; 
+    }
+}
+</script>
+
+<div id="container">
+<div class="header">
+<h1>404 Error!</h1>
+<h2>
+We're sorry - the page requested could not be found!
+</h2>
+</div>
+
+
+<p>
+We couldn't find your requested link!
+</p>
+
+<p id="http">
+Please wait while you are redirected to our site using a secure protocol (https) - your requested file may be found there.
+</p>
+
+<p id="https">
+Perhaps you followed a broken link or typed in your destination address wrong.
+</p>
+
+</div>
+
+</body>
+</html>
