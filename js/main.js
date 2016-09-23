@@ -275,8 +275,39 @@
 	/*Custom functions*/
 	 
 	function getCurrentLocation(){
+	jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCJg2IEvm5kGw0qLjt-_OxzOHR5CJDcpYI", function(success) {
+$.ajax({ url: 'http://api.geonames.org/findNearbyPostalCodes?lat='+success.location.lat+'&lng='+success.location.lng+'&username=erikxcore',
+     type: 'POST',
+		 async: 'true',
+         success: function(data){
+					var zip = $(data).find("code").find('postalcode').eq(0).text();
+					if(zip) {
+                        $('.zip').val(zip);
+                        } else {
+                        fail('Error finding where you are!');
+                    }
+         }
+     });
+  })
+  .fail(function(err) {
+    alert("API Geolocation error! \n\n"+err);
+    $(".current").tootipster('hide');	
+  });
+};
+
+/*
 		$(function() {
     		if(navigator.geolocation) {
+				
+					jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCJg2IEvm5kGw0qLjt-_OxzOHR5CJDcpYI", function(success) {
+						apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+				  })
+				  .fail(function(err) {
+				    alert("API Geolocation error! \n\n"+err);
+				  });
+				};
+*/
+    			/*
        			 navigator.geolocation.getCurrentPosition(
           			  function (pos) {
              			   var point = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -294,6 +325,7 @@
 			}
         );
     });
+ *//*
     function fail(err) {
 		if(!err){
 		$(".current").tootipster('hide');	
@@ -305,6 +337,7 @@
 			}
 });
 	}
+*/
 
    function checkZip(zipcode){
 	   
@@ -429,7 +462,10 @@
 		 dataType: "xml",
          type: 'POST',
 		 async: 'false',
-         success: parseWeatherXml
+         success: parseWeatherXml,
+         error: function(){
+         	console.log('Error geting weather');
+         }
 		});
 		
 	}
@@ -439,7 +475,10 @@
          data: "zip_code=" + zipcode,
          type: 'POST',
 		 async: 'false',
-         success: parseMoviesXml
+         success: parseMoviesXml,
+         error: function(){
+         	console.log('Error geting movies');
+         }
 		});
 	}
 	
@@ -449,7 +488,10 @@
          data: "zip_code=" + zipcode,
          type: 'POST',
 		 async: 'true',
-         success: parsePlacesXml
+         success: parsePlacesXml,
+         error: function(){
+         	console.log('Error geting places');
+         }
 		});
 	}
 	
@@ -458,11 +500,16 @@
          data: "zip_code=" + zipcode,
          type: 'POST',
 		 async: 'true',
-         success: parseBarsXml
+         success: parseBarsXml,
+         error: function(){
+         	console.log('Error geting more places');
+         }
 		});
 	}
 	
 	function parseWeatherXml(xml){
+		console.log("Weather xml:");
+		console.log(xml);
 		$("#weather").html("");
 		$(xml).find("channel").each(function(){
 			title = $(this).find("title").eq(0).text();
@@ -475,6 +522,7 @@
 	}
  
 	function parseMoviesXml(xml){
+
 		$("#movies").html("");
 		i = 0;
 		$(xml).find("theater").each(function(){
@@ -503,6 +551,7 @@
 	
 	
 	function parsePlacesXml(xml){
+
 		$("#places").html("");
 		$(xml).find("location").each(function(){
 			title = $(this).find("name").eq(0).text();
@@ -513,6 +562,7 @@
 	}
 	
 	function parseBarsXml(xml){
+
 		$("#bars").html("");
 		$(xml).find("location").each(function(){
 			title = $(this).find("name").eq(0).text();
