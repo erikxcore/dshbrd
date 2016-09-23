@@ -1,4 +1,4 @@
-Note this application works from ericbarber.me/dshbrd, however, this code won't work due to referring to an older smarty streets API and real auth token. To get this to work you would have to create your own smartstreets key and use their new /lookup api.
+Note this application works from ericbarber.me/dshbrd, however, this code won't work due to referring to an older smarty streets API and real auth token. To get this to work you would have to create your own smartstreets key and use their new /lookup api. Further refinements were neccesary to find WOEID for Yahoo's new weather API to correctly process the zipcode, as well.
 
 # [HTML5 Boilerplate](http://html5boilerplate.com)
 
