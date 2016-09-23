@@ -1,3 +1,5 @@
+Note this application works from ericbarber.me/dshbrd, however, this code won't work due to referring to an older smarty streets API and real auth token. To get this to work you would have to create your own smartstreets key and use their new /lookup api.
+
 # [HTML5 Boilerplate](http://html5boilerplate.com)
 
 HTML5 Boilerplate is a professional front-end template for building fast,
