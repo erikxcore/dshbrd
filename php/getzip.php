@@ -12,7 +12,7 @@ $authToken = urlencode('bznw4FitV4I1RrQlH91rwMjc8ujWoiLBcKDnx9OLQRYDtgpTod0HfcYe
 
 
 // Build the URL
-$req = "https://api.smartystreets.com/zipcode/?city={$city}&state={$state}&auth-id={$authId}&auth-token={$authToken}";
+$req = "https://us-zipcode.api.smartystreets.com/lookup?city={$city}&state={$state}&auth-id={$authId}&auth-token={$authToken}";
 
 // GET request and turn into associative array
 $result = json_decode(file_get_contents($req), TRUE);
